@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Around, Flat, Space
 
-# Register your models here.
+admin.site.register(Around)
+admin.site.register(Flat)
+admin.site.register(Space)
