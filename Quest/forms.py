@@ -1,12 +1,34 @@
 from django import forms
 
-from .models import Flat, Space, Around
+from .models import Quest
 from .constants import *
 
         #jak tu wrzucić constans.py ?!!!!!!!!!!!!!!!!!!
 
-class Quest(forms.Form):
-    name_of_city = forms.CharField(label="name_of_city", max_length=50)
+class QuestForm(forms.ModelForm):
+
+    class Meta:
+       model = Quest
+       fields = [
+       'name_of_city',
+       'name_of_street', 
+       'market',
+       'floor_area',
+       'how_many_rooms',
+       'how_many_levels',
+       'price',
+       'which_flor',
+       'how_many_flors',
+       'flat_condition',
+       'how_high',
+       'flat_facilities',
+       'why_flat_change',
+       'type_of_building',
+       'around_facilities',
+       'around_security',
+       'building_condition',
+       ]
+       # name_of_city = forms.CharField(label="name_of_city", max_length=50)
 
 """            
 class FlatForm(forms.ModelForm):

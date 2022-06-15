@@ -1,9 +1,18 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+from .forms import QuestForm
+from .models import *
 
-
-def quest(request):
-    return HttpResponse("Tutaj będą pola do wyboru")
+def quest_create(request):
+    if request.method == 'POST':
+      form = QuestForm(request.POST)
+      if form.is_valid():
+        form.save()
+        return redirect('quest_create')
+    else:
+        form = QuestForm() 
+    return render(request, 'questionnaire.html', {'form': form})
 """
 	def questionnaire(request):
 # if this is a POST request we need to process the form data

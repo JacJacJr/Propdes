@@ -4,7 +4,12 @@ AROUND_SECURITY_CHOICES = [("BD",'BD')]
 BUILDING_MATERIAL_CHOICES = [("BD",'BD')]
 NAIGHBOURHOOD_CHOICES = [("BD",'BD')]
 LOCALIZATION_CHOICES = [("BD",'BD')]
-MARKET_CHOICES = [("BD",'BD')]
+
+
+MARKET_CHOICES = [
+("WTÓRNY",'wtórny'),
+("PIERWOTNY", 'pierwotny'),
+]
 
 TYPE_OF_SPACE_CHOICES = [
 	("SALON",'salon'),
@@ -17,7 +22,9 @@ TYPE_OF_SPACE_CHOICES = [
 	('POMIESZCZENIE GOSPODARCZE', 'pomieszczenie gospodarcze'),
 ]
 
-TECHNICAL_CONDITION_CHOICES = [
+BUILDING_CONDITION_CHOICES = [("BD",'BD')]
+
+FLAT_CONDITION_CHOICES = [
 	("PO_REMONCIE",'po remoncie'),
 	('DOBRY', 'dobry'),
 	('DO_REMONTU', 'do remontu'),
