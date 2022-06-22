@@ -3,27 +3,41 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 #from django.utils.translation import ugettext as _
 
-from .forms import QuestForm
+from .forms import QuestForm, RoomFormSet
 from .models import Quest
 from .constants import *
-from .descriptions import get_example_desc
 
 def quest_show(request, quest_id):
-    description = get_example_desc(quest_id)
-    print(description)
-    return HttpResponse(description[0])
-    #return render(request, 'description.html',{'quest': quest})
+    quest = Quest.objects.get(id=quest_id)
+    return render(request, 'description.html',{'quest': quest})
 
 def quest_create(request):
     if request.method == 'POST':
         form = QuestForm(request.POST)
-        if form.is_valid():
-            form.save()
-            quest_id = Quest.objects.latest('id').id
-            return redirect(f'/quest/description/{quest_id}')
+        formset = RoomFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            instace = form.save()
+            for room_form in formset:
+                print('PING')
+                room = room_form.save(commit=False)
+                room.quest = instace
+                room.save()
+            return redirect(f'/quest/description/{instace.id}')
         else:
-            form = QuestForm() 
-            return render(request, 'questionnaire.html', {'form': form})
+            return render(
+            request, 
+            'questionnaire.html', 
+            {'form': form, 'formset': formset}
+        )
+    else:
+        form = QuestForm()
+        formset = RoomFormSet()
+        print(formset)
+        return render(
+            request, 
+            'questionnaire.html', 
+            {'form': form, 'formset': formset}
+        )
 
 
 

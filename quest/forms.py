@@ -1,6 +1,7 @@
 from django import forms
+from django.forms import formset_factory
 
-from .models import Quest
+from .models import Quest, Room
 from .constants import *
 
         #jak tu wrzucić constans.py ?!!!!!!!!!!!!!!!!!!
@@ -28,27 +29,21 @@ class QuestForm(forms.ModelForm):
        'around_security',
        'building_condition',
        ]
+
+
        # name_of_city = forms.CharField(label="name_of_city", max_length=50)
 
-"""!!!!!!!!! JAK ZROBIĆ żeby w formularzu pojawiał się RoomForm:
-1. w ilości pokoi (for room in how_many_rooms)
-2. z możliwością dodawania dowolnej ilości pomieszczeń (button "Dodaj")
-"""            
-# class FlatForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['type_of_building'].widget = forms.RadioSelect()
+        self.fields['type_of_building'].choices = TYPE_OF_BUILDING_CHOICES
 
-#     class Meta:
-#         model = Flat
-#         fields = ('name_of_city',)
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = [
+            'metrage',
+        ]
 
-# class SpaceForm(forms.ModelForm):
 
-#     class Meta:
-#         model = Space
-#         fields = ('type_of_space',)
-
-# class AroundForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Around
-#         fields = ('type_of_building',)
-
+RoomFormSet = formset_factory(RoomForm)

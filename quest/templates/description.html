@@ -19,20 +19,22 @@
 	<br>
 	<br>
 	<strong> Mieszkanie </strong> <br>
-	<!-- Jeżeli uda się zrobić zagadnienie z forms.py
-	Na powierzchnię {{quest.floor_area}} skłąda się:
-		{% for room in {{how_much_rooms}} %}
-			{{room{{n}}.type}} - {{room{{n}}_floor_area}}
-		{% end for %} 
-	<br> -->
+	{% if quest.rooms.all %}
+	
+		Na powierzchnię {{quest.floor_area}} skłąda się:
+			{% for room in quest.rooms.all %}
+				{{ room.metrage }}
+			{% endfor %}
+	{% endif %}
+	<br>
 	W pierwszej kolejności uwagę zwraca, iż mieszkanie jest niezwykle {{quest.atribute3}}, wysokie na {{quest.how_high}} cm.
 	Opłąty czynszowe dla {{quest.how_many_people}} osób wynosiły {quest.flat_utilities} PLN na miesiąc.
 	{% if quest.flat_facilities %}
 	Do mieszkania przynależy {{quest.flat_facilities}}
-	{% if quest.parking != 'brak' %}
-	 oraz {{} quest.parking }
-	{% else %}
-	.
+	{% if quest.parking %}
+	 oraz {{ quest.parking }}
+	{% else %}.
+	{% endif %}
 	<br>
 	<br>
 	<strong> Budynek </strong> <br>\
@@ -41,11 +43,12 @@
 		{% if renovation}
 		Wspólnota mieszkaniowa dba o budynek, a części wspólne są czyste i schludne. W ostatnich latach przeprowadzono:
 		<ol>
-		{% for renoviation in {{building_renovations}} %}
+			{% endif %}
+		{% for renoviation in building_renovations %}
 			<li>
 				{{renovation}}
 			</li>
-		{% end for}
+		{% endfor %}
 		</ol>
 -->		
 	Na terenie {{quest.type_of_building}} znajduje się także {{building_facilities}}. <br>

@@ -77,6 +77,10 @@ class Quest(models.Model):
 	#Transport
 	#Z_formularzy
 
+class Room(models.Model):
+	quest = models.ForeignKey(Quest, on_delete=models.CASCADE, related_name='rooms')
+	metrage = models.PositiveIntegerField(verbose_name='metraż', help_text='w metrach kwadratowych')
+	# type_of_room = models.CharField(max_length=30, choices=TYPE_OF_ROOM_CHOICES, null=True)
 
 #To mi się już chyba raczej nie przyda....
 """
