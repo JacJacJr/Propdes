@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Quest import views
+from quest import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('quest/', include('Quest.urls')),
+    path('quest/', include('quest.urls')),
 ]

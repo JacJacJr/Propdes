@@ -11,8 +11,9 @@ MARKET_CHOICES = [
 ("PIERWOTNY", 'pierwotny'),
 ]
 
-TYPE_OF_SPACE_CHOICES = [
+TYPE_OF_ROOM_CHOICES = [
 	("SALON",'salon'),
+	("SALON Z ANEKSEM",'salon z aneksem'),
 	("POKOJ", 'pokoj'),
 	('KORYTARZ', 'korytarz'),
 	('LAZIENKA', 'lazienka'),
@@ -42,15 +43,18 @@ TYPE_OF_HEATING_CHOICES = [
 ('KOTŁOWNIA', 'kotłownia'),
 ]
 
-FLAT_ADDITIONAL_SPACES_CHOICES = [
-("PIWNICA",'piwnica'),
-('SCHOWEK', 'schowek'),
+PARKING_CHOICES = [
 ('MIEJSCE PARKINGOWE', (
         ('PODZIEMNE', 'miejsce w garażu podziemnym'),
         ('GARAZ', 'miejsce w garażu naziemnym'),
         ('NA_ULICY', 'parking na ulicy'),
     	)
     ),
+]
+
+FLAT_ADDITIONAL_SPACES_CHOICES = [
+("PIWNICA",'piwnica'),
+('SCHOWEK', 'schowek'),
 ]
 
 WINDOWS_TYPE_CHOICES = [
@@ -77,7 +81,7 @@ DID_HE_LIVED_CHOICES = [
 	('INNE', 'inne'),
 ]
 
-SPACE_ADDITIONAL_SPACE_CHOICES = [
+ROOM_ADDITIONAL_SPACE_CHOICES = [
 	("TARAS",'taras'),
 	("OGRÓDEK", "ogródek"),
 	("BALKON LOGIA", "balkon loggia"),
@@ -96,4 +100,38 @@ WINDOW_IN_SPACE_CHOICES = [
             ('NIE', 'NIE'),
         )
     ),
+]
+
+ATRIBUTE_CHOICES= [
+('PRZESTRONNE', 'przestronne'),
+('PRZYTULNE','przytulne'),
+('FUNKCJONALNE','funkcjonalne'),
+('ROZKŁADOWE','rozkładowe '),
+('SŁONECZNE','sloneczne'),
+('ZACISZNE','zaciszne'),
+('DOBRZE ZLOKALIZOWANE','dobrze zlokalizowane'), 
+('BEZPIECZNE','bezpieczne'),
+('DUŻE','duże'),
+('NOWOCZESNE','nowoczesne'),
+('TRADYCYJNE','tradycyjne'), 
+('WYREMONTOWANE','wyremontowane'), 
+('ŚWIETNIE SKOMUNIKOWANE','świetnie skomunikowane'), 
+('W OTOCZENIU ZIELENI','w otoczeniu zieleni'),
+('USTAWNE','ustawne'),
+('Z PEŁNĄ INFRASTRUKTURĄ USŁUGOWO-HANDLOWĄ','z pełną infrastrukturą usługowo-handlową'),
+('WIELOFUNKCYJNE ','wielofunkcyjne'),
+('PRESTIŻOWE ','prestiżowe'),
+('WYJĄTKOWE ','wyjątkowe'),
+('WSPÓŁCZESNE ','współczesne'),
+('POSTMODERNISTYCZNE ','postmodernistyczne'), 
+('ROZBUDOWANE ','rozbudowane'),
+('REKREACYJNE ','rekreacyjne'),
+('STYLOWE','stylowe'),
+('NIEPOWTARZALNE','niepowtarzalne'), 
+('ROZWINIĘTE ','rozwinięte'),
+('BEZPOŚREDNIE','bezpośrednie'),
+('UNIKALNE','unikalne'),
+('NIEPOWTARZALNE','niepowtarzalne'), 
+('ELEGANCKIE','eleganckie'),
+('EKSKLUZYWNE','ekskluzywne'),
 ]

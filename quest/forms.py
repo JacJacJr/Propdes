@@ -30,23 +30,25 @@ class QuestForm(forms.ModelForm):
        ]
        # name_of_city = forms.CharField(label="name_of_city", max_length=50)
 
+"""!!!!!!!!! JAK ZROBIĆ żeby w formularzu pojawiał się RoomForm:
+1. w ilości pokoi (for room in how_many_rooms)
+2. z możliwością dodawania dowolnej ilości pomieszczeń (button "Dodaj")
 """            
-class FlatForm(forms.ModelForm):
+# class FlatForm(forms.ModelForm):
 
-    class Meta:
-        model = Flat
-        fields = ('name_of_city',)
+#     class Meta:
+#         model = Flat
+#         fields = ('name_of_city',)
 
-class SpaceForm(forms.ModelForm):
+# class SpaceForm(forms.ModelForm):
 
-    class Meta:
-        model = Space
-        fields = ('type_of_space',)
+#     class Meta:
+#         model = Space
+#         fields = ('type_of_space',)
 
-class AroundForm(forms.ModelForm):
+# class AroundForm(forms.ModelForm):
 
-    class Meta:
-        model = Around
-        fields = ('type_of_building',)
-"""
+#     class Meta:
+#         model = Around
+#         fields = ('type_of_building',)
 

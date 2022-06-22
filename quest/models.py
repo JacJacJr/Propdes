@@ -1,15 +1,20 @@
+from django import forms
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from multiselectfield import MultiSelectField
+#DLACZEGO TO NIE DZIAŁA?!
+#from django.utils.translation import ugettext_lazy as _
 from .constants import *
+
 
 class Quest(models.Model):
 	#Flat
-	name_of_city = models.CharField(max_length=30, help_text='Miasto')
+	name_of_city = models.CharField(max_length=30 , help_text='Miasto')
 	name_of_street = models.CharField(max_length=30, help_text='Ulica')
-	market = models.CharField(max_length=30, help_text='Rynek',choices=MARKET_CHOICES)
+	market = models.CharField(max_length=30, help_text='Rynek',choices=MARKET_CHOICES, null=True)
 	floor_area = models.IntegerField(help_text='m2',
 		validators=[
-			MaxValueValidator(300),
+			MaxValueValidator(250),
 			MinValueValidator(1),
 		]
 	)
@@ -43,20 +48,18 @@ class Quest(models.Model):
 			MinValueValidator(1)
 		]
 	)
-	flat_condition = models.CharField(max_length=30, help_text='Stan mieszkania', choices=FLAT_CONDITION_CHOICES)
+	flat_condition = models.CharField(max_length=30, help_text='Stan mieszkania', choices=FLAT_CONDITION_CHOICES, null=True)
 	how_high = models.IntegerField(help_text='Wysokość w cm',
 		validators=[
 			MaxValueValidator(500),
 			MinValueValidator(1)
 		]
 	)
-	#jak zrobić żeby tu był wielokrotny wybór?!
-	flat_facilities = models.CharField(max_length=30, help_text='Udogodnienia', choices=FACILITIES_CHOICES)
-	why_flat_change = models.CharField(max_length=30, help_text='Powód zmiany nieruchomości', choices=WHY_FLAT_CHANGE_CHOICES)
-	"""
+	flat_facilities = MultiSelectField(choices = FACILITIES_CHOICES, null=True)
+	why_flat_change = MultiSelectField(max_length=30, help_text='Powód zmiany nieruchomości', choices=WHY_FLAT_CHANGE_CHOICES, null=True)
 	#Rooms
 	#czy aneks kuchenny będzie typem pokoju? raczej byłby chackboxem do zaznaczenia
-	type_of_space = models.CharField(max_length=30, choices=TYPE_OF_SPACE_CHOICES)
+	type_of_room = models.CharField(max_length=30, choices=TYPE_OF_ROOM_CHOICES, null=True)
 	#space_additional_space = models.CharField(max_lenght=30, choices= SPACE_ADDITIONAL_SPACE_CHOICES)
 	#window_in_space = models.CharField(max_lenght=20, choices=WINDOW_IN_SPACE_CHOICES)
 	floor_area= models.IntegerField(
@@ -65,16 +68,38 @@ class Quest(models.Model):
 			MinValueValidator(1),
 		]
 	)
-	"""
 	#Building
-	type_of_building = models.CharField(max_length=30, help_text='Rodzaj budynku', choices=TYPE_OF_BUILDING_CHOICES)
-	around_facilities = models.CharField(max_length=30, help_text='Udogodnienia w budynku', choices=AROUND_FACILITIES_CHOICES)
-	around_security = models.CharField(max_length=30, help_text='Bezpieczeństwo okolicy', choices=AROUND_SECURITY_CHOICES)
-	building_condition = models.CharField(max_length=30, help_text='Stan budynku', choices=BUILDING_CONDITION_CHOICES)
+	type_of_building = models.CharField(max_length=30, help_text='Rodzaj budynku', choices=TYPE_OF_BUILDING_CHOICES, null=True)
+	around_facilities = models.CharField(max_length=30, help_text='Udogodnienia w budynku', choices=AROUND_FACILITIES_CHOICES, null=True)
+	around_security = models.CharField(max_length=30, help_text='Bezpieczeństwo okolicy', choices=AROUND_SECURITY_CHOICES, null=True)
+	building_condition = models.CharField(max_length=30, help_text='Stan budynku', choices=BUILDING_CONDITION_CHOICES, null=True)
 	#Localization
 	#Z_formularzy
 	#Transport
 	#Z_formularzy
+
+"""
+!!!!!!!To byłoby mi potrzebne tutaj, aby przez ilośc pokoi zdefiniować ile tych pokoi będzie
+	def rooms_in_flat(self, how_many_rooms):
+		for room in range(how_many_rooms):
+			n=1
+			variable_name = []
+			variable_name.append('room'+n)
+			variable_name[n-1] = Room
+			n +=
+To zakładam musiałoby być przed klasą Quest
+class Room(models.Model):
+	quest_id= models.ForeignKey(Quest, on_delete=models.CASCADE)
+	type_of_room = models.CharField(max_length=30, choices=TYPE_OF_ROOM_CHOICES)
+	room_additional_space = models.CharField(max_lenght=30, choices= ROOM_ADDITIONAL_SPACE_CHOICES)
+	#window_in_space = models.CharField(max_lenght=20, choices=WINDOW_IN_SPACE_CHOICES)
+	floor_area= models.IntegerField(
+		validators=[
+			MaxValueValidator(100),
+			MinValueValidator(1),
+		]
+	)
+"""
 
 #To mi się już chyba raczej nie przyda....
 """
@@ -156,18 +181,7 @@ class Flat(models.Model):
 		]
 	)
 
-class Space(models.Model):
-	flat_id= models.ForeignKey(Flat, on_delete=models.CASCADE)
-	#czy aneks kuchenny będzie typem pokoju? raczej byłby chackboxem do zaznaczenia
-	type_of_space = models.CharField(max_length=30, choices=TYPE_OF_SPACE_CHOICES)
-	#space_additional_space = models.CharField(max_lenght=30, choices= SPACE_ADDITIONAL_SPACE_CHOICES)
-	#window_in_space = models.CharField(max_lenght=20, choices=WINDOW_IN_SPACE_CHOICES)
-	floor_area= models.IntegerField(
-		validators=[
-			MaxValueValidator(100),
-			MinValueValidator(1),
-		]
-	)
+
 
 class Around(models.Model):
 	flat_id= models.ForeignKey(Flat, on_delete=models.CASCADE)

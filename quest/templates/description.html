@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Twój opis</title>
+</head>
+<body>
+	<strong> {{quest.atribute2}} M{{quest.how_many_rooms}} przy ul. {{quest.name_of_street}} szuka nowego właściciela! </strong> 
+	<br>
+	<br>
+	<strong> W skrócie...</strong> <br>\
+	Z bólem serca, z powodu {{quest.why_flat_change}}, szukam nowego włąściciela do mojego {{quest.atribute1}}, M{{how_many_rooms}}, zlokalizowanego na ulicy <name_of_street> na warszawskim Powiślu.
+	Stacja metra Centrum Nauki Kopernik ok. 4 minuty spacerem! 
+	{% if with_equipment and sell_with_equipment == 'TAK'} 
+	Mieszkanie jest {{quest.atribute2}}, {{with_equipment}}
+	umeblowane, dostępne od {{when_move_out}}. 
+	Jeżeli tego właśnie szukasz, zapraszam po więcej szczegółów poniżej. 
+	<br>
+	<br>
+	<strong> Mieszkanie </strong> <br>
+	<!-- Jeżeli uda się zrobić zagadnienie z forms.py
+	Na powierzchnię {{quest.floor_area}} skłąda się:
+		{% for room in {{how_much_rooms}} %}
+			{{room{{n}}.type}} - {{room{{n}}_floor_area}}
+		{% end for %} 
+	<br> -->
+	W pierwszej kolejności uwagę zwraca, iż mieszkanie jest niezwykle {{quest.atribute3}}, wysokie na {{quest.how_high}} cm.
+	Opłąty czynszowe dla {{quest.how_many_people}} osób wynosiły {quest.flat_utilities} PLN na miesiąc.
+	{% if quest.flat_facilities %}
+	Do mieszkania przynależy {{quest.flat_facilities}}
+	{% if quest.parking != 'brak' %}
+	 oraz {{} quest.parking }
+	{% else %}
+	.
+	<br>
+	<br>
+	<strong> Budynek </strong> <br>\
+	Nieruchomość znajduje się na {quest.which_floor}. piętrze w {{quest.how_many_floors}} piętrowej {{quest.type_of_building}} z {{quest.year_of_building}} roku. 
+<!-- nie wiem w jakiej formie będą podane dane, w jaki sposób je wyciągnąć?
+		{% if renovation}
+		Wspólnota mieszkaniowa dba o budynek, a części wspólne są czyste i schludne. W ostatnich latach przeprowadzono:
+		<ol>
+		{% for renoviation in {{building_renovations}} %}
+			<li>
+				{{renovation}}
+			</li>
+		{% end for}
+		</ol>
+-->		
+	Na terenie {{quest.type_of_building}} znajduje się także {{building_facilities}}. <br>
+	<br>
+	<strong> Lokalizacja </strong><br>
+	Powiśle słynie ze swojej atrakcyjności i bezpieczeństwa. Swoje miejsce znajdzie tutaj zarówno, studen, rodzina jak i osoby z większym doświadczeniem życiowym. W bezpośrednim sąsiedztwie znajdują się liczne placówki edukacyjne jak: szkoła, przedszkole czy uczelnie. Nieopodal znajduje sie również szpital i przychodnia. Niecałe 100 metrów dzieli nas również od spaceru w parku. Wokół wiele sklepów, restauracji, kawiarni czy też galeria handlowa. Sąsiedztwo rzeki udostępnia nam ścieżki rowerowe czy bulwary słuące do rekreacji. <br>
+	<br>
+	<strong> Komunikacja i okolica </strong> <br>\
+	Okolica jest skomunikowana idealnie wieloma środkami komunikacji w każdym kierunku. Stacja metra ok. 400 metrów dalej, przystanek autobusowy 2 minuty spacerem. PKP Powiśle również w niedalekim sąsiedztwie, a do PKiNK nas zaledwie 15 minut spacerem. Najbliższa trasa szybkiego ruchu znajduje się około 70 metrów w linii prostej, przez co nie przeszkadza to w codziennym użytkowaniu mieszkania. 
+	<br>
+	)
+	]
+</body>
+</html>

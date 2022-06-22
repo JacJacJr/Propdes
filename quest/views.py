@@ -1,18 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+#from django.utils.translation import ugettext as _
+
 from .forms import QuestForm
-from .models import *
+from .models import Quest
+from .constants import *
+from .descriptions import EXAMPLE_DESCRIPTION
+
+def quest_show(request, quest_id):
+    quest = Quest.objects.get(id = quest_id)
+    #return HttpResponse(TITLES + HEADER + FLAT + BUILDING + LOCALIZATION)
+    return HttpResponse(EXAMPLE_DESCRIPTION)
 
 def quest_create(request):
     if request.method == 'POST':
       form = QuestForm(request.POST)
       if form.is_valid():
         form.save()
-        return redirect('quest_create')
+        quest_id = Quest.objects.latest('id').id
+        return redirect(f'/quest/description/{quest_id}')
     else:
         form = QuestForm() 
-    return render(request, 'questionnaire.html', {'form': form})
+        return render(request, 'questionnaire.html', {'form': form})
+
+
+
 """
 	def questionnaire(request):
 # if this is a POST request we need to process the form data

@@ -13,4 +13,5 @@ urlpatterns = [
     path('', forms.QuestForm, name='QuestForm'),
    # path('x', forms.quest, name='quest'),
     path('create/', views.quest_create, name='quest_create'),
+    path('description/<int:quest_id>/', views.quest_show, name='quest_show'),
 ]
