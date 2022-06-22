@@ -2,8 +2,7 @@ from django import forms
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from multiselectfield import MultiSelectField
-#DLACZEGO TO NIE DZIAŁA?!
-#from django.utils.translation import ugettext_lazy as _
+
 from .constants import *
 
 
@@ -78,28 +77,6 @@ class Quest(models.Model):
 	#Transport
 	#Z_formularzy
 
-"""
-!!!!!!!To byłoby mi potrzebne tutaj, aby przez ilośc pokoi zdefiniować ile tych pokoi będzie
-	def rooms_in_flat(self, how_many_rooms):
-		for room in range(how_many_rooms):
-			n=1
-			variable_name = []
-			variable_name.append('room'+n)
-			variable_name[n-1] = Room
-			n +=
-To zakładam musiałoby być przed klasą Quest
-class Room(models.Model):
-	quest_id= models.ForeignKey(Quest, on_delete=models.CASCADE)
-	type_of_room = models.CharField(max_length=30, choices=TYPE_OF_ROOM_CHOICES)
-	room_additional_space = models.CharField(max_lenght=30, choices= ROOM_ADDITIONAL_SPACE_CHOICES)
-	#window_in_space = models.CharField(max_lenght=20, choices=WINDOW_IN_SPACE_CHOICES)
-	floor_area= models.IntegerField(
-		validators=[
-			MaxValueValidator(100),
-			MinValueValidator(1),
-		]
-	)
-"""
 
 #To mi się już chyba raczej nie przyda....
 """

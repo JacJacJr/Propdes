@@ -6,23 +6,24 @@ from django.urls import reverse
 from .forms import QuestForm
 from .models import Quest
 from .constants import *
-from .descriptions import EXAMPLE_DESCRIPTION
+from .descriptions import get_example_desc
 
 def quest_show(request, quest_id):
-    quest = Quest.objects.get(id = quest_id)
-    #return HttpResponse(TITLES + HEADER + FLAT + BUILDING + LOCALIZATION)
-    return HttpResponse(EXAMPLE_DESCRIPTION)
+    description = get_example_desc(quest_id)
+    print(description)
+    return HttpResponse(description[0])
+    #return render(request, 'description.html',{'quest': quest})
 
 def quest_create(request):
     if request.method == 'POST':
-      form = QuestForm(request.POST)
-      if form.is_valid():
-        form.save()
-        quest_id = Quest.objects.latest('id').id
-        return redirect(f'/quest/description/{quest_id}')
-    else:
-        form = QuestForm() 
-        return render(request, 'questionnaire.html', {'form': form})
+        form = QuestForm(request.POST)
+        if form.is_valid():
+            form.save()
+            quest_id = Quest.objects.latest('id').id
+            return redirect(f'/quest/description/{quest_id}')
+        else:
+            form = QuestForm() 
+            return render(request, 'questionnaire.html', {'form': form})
 
 
 
