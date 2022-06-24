@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 
-        <script src="{% static 'js/rooms_formset.js' %}"></script> 
     </head>
     <body>
         <header class="page-header">
@@ -30,7 +29,7 @@
                 </table>
             {% endfor %}
         </div>
-        <input type="button" value="Add More" id="add_more">
+        <input type="button" value="Dodaj pomieszczenie" id="add_more">
         <div id="empty_form" style="display:none">
             <table class='no_error'>
                 {{ formset.empty_form.as_table }}

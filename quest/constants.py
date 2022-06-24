@@ -1,10 +1,15 @@
-TYPE_OF_BUILDING_CHOICES = [("BD",'BD')]
-AROUND_FACILITIES_CHOICES = [("BD",'BD')]
-AROUND_SECURITY_CHOICES = [("BD",'BD')]
-BUILDING_MATERIAL_CHOICES = [("BD",'BD')]
-NAIGHBOURHOOD_CHOICES = [("BD",'BD')]
-LOCALIZATION_CHOICES = [("BD",'BD')]
+TYPE_OF_BUILDING_CHOICES = [
+("kamienicy",'kamienicy'),
+('bloku', 'bloku'),
+('szeregowcu', 'szeregowcu'),
+]
+NEIGH_FACILITIES_CHOICES = [("BD",'BD')]
 
+NEIGH_SECURITY_CHOICES = [
+("ZAMKNIĘTE OSIEDLE",'zamknięte osiedle'),
+('OCHRONA', 'ochrona'),
+('MONITORING', 'monitoring'),
+]
 
 MARKET_CHOICES = [
 ("WTÓRNY",'wtórny'),
@@ -12,44 +17,35 @@ MARKET_CHOICES = [
 ]
 
 TYPE_OF_ROOM_CHOICES = [
-	("SALON",'salon'),
-	("SALON Z ANEKSEM",'salon z aneksem'),
-	("POKOJ", 'pokoj'),
-	('KORYTARZ', 'korytarz'),
-	('LAZIENKA', 'lazienka'),
-	('TOALETA', 'wc'),
-	('ŁAZIENKA Z WC', 'lazienka z wc'),
-	('GARDEROBA', 'garderoba'),
-	('POMIESZCZENIE GOSPODARCZE', 'pomieszczenie gospodarcze'),
+	("salon",'salon'),
+	("salon z aneksem",'salon z aneksem'),
+	("pokoj", 'pokój'),
+	('korytarz', 'korytarz'),
+	('lazienka', 'lazienka'),
+	('toaleta', 'wc'),
+	('łazienka z wc', 'lazienka z wc'),
+	('garderoba', 'garderoba'),
+	('pomieszczenie gospodarcze', 'pomieszczenie gospodarcze'),
 ]
 
-BUILDING_CONDITION_CHOICES = [("BD",'BD')]
+BUILDING_CONDITION_CHOICES = [
+("remont dachu",'wyremontowany dach'),
+('termomodernizację', 'budynek po termomodernizacji'),
+('wymianę instalacji wodno-kanalizacyjnych','instalacja wodno-kanalizacyjna wymieniona'),
+]
 
 FLAT_CONDITION_CHOICES = [
-	("PO_REMONCIE",'po remoncie'),
-	('DOBRY', 'dobry'),
-	('DO_REMONTU', 'do remontu'),
-]
-
-TYPE_OF_KITCHEN_CHOICES = [
-('ODDZIELNA', 'oddzielna'),
-('ANEKS KUCHENNY', 'aneks kuchenny'),
-]
-
-TYPE_OF_HEATING_CHOICES = [
-("MIEJSKIE",'miejskie'),
-('GAZOWE', 'gazowe'),
-('ELEKTRYCZNE', 'elektryczne'),
-('KOTŁOWNIA', 'kotłownia'),
+	("bardzo dobry",'bardzo dobry'),
+	('dobry', 'dobry'),
+	('do odświeżenia', 'do odświeżenia'),
+	('do remontu', 'do remontu'),
 ]
 
 PARKING_CHOICES = [
-('MIEJSCE PARKINGOWE', (
-        ('PODZIEMNE', 'miejsce w garażu podziemnym'),
-        ('GARAZ', 'miejsce w garażu naziemnym'),
-        ('NA_ULICY', 'parking na ulicy'),
-    	)
-    ),
+        ('miejsce w garażu podziemnym', 'miejsce w garażu podziemnym'),
+        ('miejsce w garażu naziemnym', 'miejsce w garażu naziemnym'),
+        ('parking na ulicy', 'parking na ulicy'),
+		('nie przynależy', 'nie przynależy')
 ]
 
 FLAT_ADDITIONAL_SPACES_CHOICES = [
@@ -63,15 +59,15 @@ WINDOWS_TYPE_CHOICES = [
 ('ALUMINIOWE', 'aluminiowe'),
 ]
 
-FACILITIES_CHOICES = [
+BUILDING_FACILITIES_CHOICES = [
 ('WINDA','winda'),
 ('PODJAZD NA WÓZKI', 'podjazd na wózki'),
 ('WINDA DLA WÓZKÓW', 'winda dla wózków'	),
 ]
 
 WHY_FLAT_CHANGE_CHOICES = [
-	("ZMIANA MIASTA",'zmiana miasta'),
-	('ZMIANA NA WIĘKSZE', 'zmiana na większe'),
+	("ZMIANA MIASTA",'zmiany miasta'),
+	('ZMIANA NA WIEKSZE', 'zmiany na wieksze'),
 	('INNE','inne'),
 ]
 
@@ -82,56 +78,74 @@ DID_HE_LIVED_CHOICES = [
 ]
 
 ROOM_ADDITIONAL_SPACE_CHOICES = [
-	("TARAS",'taras'),
-	("OGRÓDEK", "ogródek"),
-	("BALKON LOGIA", "balkon loggia"),
+	('brak', 'brak'),
+	("z tarasem",'taras'),
+	("z wejsciem na ogródek", "ogródek"),
+	("z balkonem", "balkon"),
+	('z loggia', 'loggia'),
 ]
 
-WINDOW_IN_SPACE_CHOICES = [
-    ('TAK', (
-            ('PŁ', 'na północ'),
-            ('WSCH', 'na wschód'),
-            ('PŁD', 'na południe'),
-            ('ZACH', 'na zachód'),
-        )
+WINDOW_IN_ROOM_CHOICES = [
+('tak', (
+        ('okna na północ', 'na północ'),
+   		('okna na wschód', 'na wschód'),
+    	('okna na południe', 'na południe'),
+   		('okna na zachód', 'na zachód'), 
+    	)
     ),
-    ('NIE', (
-    		#czy to można pominąć?
-            ('NIE', 'NIE'),
-        )
-    ),
+('nie', (
+		('bez okien', 'bez okien'),
+		)
+	),
+]
+
+WITH_EQUIPMENT_CHOICES= [
+('SOFA','sofa'),
+('ZESTAW WYPOCZYNKOWY', 'zestaw wypoczynkowy'),
+('KRZESŁA', 'krzesła')
+]
+
+WHEN_MOVE_OUT_CHOICES = [
+('kilka tygodni', 'za kilka tygodni'),
+('około miesiąc', 'za około miesiąc'),
+]
+
+OWNERSHIP_RIGHT_CHOICES = [
+('własnościowe', 'własnościowe'),
+('spółdzielczo-włsnościowe','spółdzielczo-włsnościowe'),
+('udział', 'udział'),
 ]
 
 ATRIBUTE_CHOICES= [
-('PRZESTRONNE', 'przestronne'),
-('PRZYTULNE','przytulne'),
-('FUNKCJONALNE','funkcjonalne'),
-('ROZKŁADOWE','rozkładowe '),
-('SŁONECZNE','sloneczne'),
-('ZACISZNE','zaciszne'),
-('DOBRZE ZLOKALIZOWANE','dobrze zlokalizowane'), 
-('BEZPIECZNE','bezpieczne'),
-('DUŻE','duże'),
-('NOWOCZESNE','nowoczesne'),
-('TRADYCYJNE','tradycyjne'), 
-('WYREMONTOWANE','wyremontowane'), 
-('ŚWIETNIE SKOMUNIKOWANE','świetnie skomunikowane'), 
-('W OTOCZENIU ZIELENI','w otoczeniu zieleni'),
-('USTAWNE','ustawne'),
-('Z PEŁNĄ INFRASTRUKTURĄ USŁUGOWO-HANDLOWĄ','z pełną infrastrukturą usługowo-handlową'),
-('WIELOFUNKCYJNE ','wielofunkcyjne'),
-('PRESTIŻOWE ','prestiżowe'),
-('WYJĄTKOWE ','wyjątkowe'),
-('WSPÓŁCZESNE ','współczesne'),
-('POSTMODERNISTYCZNE ','postmodernistyczne'), 
-('ROZBUDOWANE ','rozbudowane'),
-('REKREACYJNE ','rekreacyjne'),
-('STYLOWE','stylowe'),
-('NIEPOWTARZALNE','niepowtarzalne'), 
-('ROZWINIĘTE ','rozwinięte'),
-('BEZPOŚREDNIE','bezpośrednie'),
-('UNIKALNE','unikalne'),
-('NIEPOWTARZALNE','niepowtarzalne'), 
-('ELEGANCKIE','eleganckie'),
-('EKSKLUZYWNE','ekskluzywne'),
+('przestronne', 'przestronne'),
+('przytulne','przytulne'),
+('funkcjonalne','funkcjonalne'),
+('rozkładowe','rozkładowe '),
+('słoneczne','sloneczne'),
+('zaciszne','zaciszne'),
+('dobrze zlokalizowane','dobrze zlokalizowane'), 
+('bezpieczne','bezpieczne'),
+('duże','duże'),
+('nowoczesne','nowoczesne'),
+('tradycyjne','tradycyjne'), 
+('wyremontowane','wyremontowane'), 
+('świetnie skomunikowane','świetnie skomunikowane'), 
+('w otoczeniu zieleni','w otoczeniu zieleni'),
+('ustawne','ustawne'),
+('z pełną infrastrukturą usługowo-handlową','z pełną infrastrukturą usługowo-handlową'),
+('wielofunkcyjne ','wielofunkcyjne'),
+('prestiżowe ','prestiżowe'),
+('wyjątkowe ','wyjątkowe'),
+('współczesne ','współczesne'),
+('postmodernistyczne ','postmodernistyczne'), 
+('rozbudowane ','rozbudowane'),
+('rekreacyjne ','rekreacyjne'),
+('stylowe','stylowe'),
+('niepowtarzalne','niepowtarzalne'), 
+('rozwinięte ','rozwinięte'),
+('bezpośrednie','bezpośrednie'),
+('unikalne','unikalne'),
+('niepowtarzalne','niepowtarzalne'), 
+('eleganckie','eleganckie'),
+('ekskluzywne','ekskluzywne'),
 ]

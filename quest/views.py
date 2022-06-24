@@ -18,7 +18,6 @@ def quest_create(request):
         if form.is_valid() and formset.is_valid():
             instace = form.save()
             for room_form in formset:
-                print('PING')
                 room = room_form.save(commit=False)
                 room.quest = instace
                 room.save()
@@ -32,7 +31,6 @@ def quest_create(request):
     else:
         form = QuestForm()
         formset = RoomFormSet()
-        print(formset)
         return render(
             request, 
             'questionnaire.html', 
